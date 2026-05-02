@@ -1,4 +1,5 @@
 using System;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers;
@@ -35,6 +36,11 @@ public class BuggyController : baseApiController
     }
 
 
-
+    [Authorize(Roles ="Admin")]
+    [HttpGet("admin-secret")]
+    public ActionResult<string> GetsecretAdmin()
+    {
+        return Ok("Only admins should see this");
+    }
 
 }
